@@ -28,3 +28,6 @@ jobs:
         cache: 'npm'
     - run: yarn
     - run: yarn run test
+    - run: yarn run test:mutation
+    - run: yarn playwright install
+    - run: yarn run e2e
