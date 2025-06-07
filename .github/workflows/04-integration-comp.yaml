@@ -16,7 +16,7 @@ jobs:
       run: yarn
 
     - name: Checando padronizacao do codigo
-      run: yarn run lint
+      run: yarn lint
    
 
   unidade:
