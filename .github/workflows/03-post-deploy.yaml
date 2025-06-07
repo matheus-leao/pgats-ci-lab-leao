@@ -3,15 +3,14 @@
 
 name: Run Tests on Post Deploy
 
-on: 
+on:
   workflow_run:
-    workflows: ["Manual Run"]
+    workflows: ['Manual Run']
     types:
       - completed
 
 jobs:
   e2e-tests:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -20,23 +19,23 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: yarn
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: yarn
 
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
-    - run: yarn run test
-    - run: yarn run test:mutation
-    - run: yarn playwright install
-    - run: yarn run e2e
+      - run: yarn run test
+      - run: yarn run test:mutation
+      - run: yarn playwright install
+      - run: yarn run e2e
 
-    - uses: actions/upload-artifact@v4
-      if: ${{ !cancelled() }}  
-      with:
-        name: relatorio
-        path: ./playwright-report
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: relatorio
+          path: ./playwright-report
