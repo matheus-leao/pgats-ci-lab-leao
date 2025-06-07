@@ -39,3 +39,9 @@ jobs:
     - run: yarn run test:mutation
     - run: yarn playwright install
     - run: yarn run e2e
+
+    - uses: actions/upload-artifact@v4
+      if: ${{ !cancelled() }}  
+      with:
+          name: relatorio
+          path: ./playwright-report
