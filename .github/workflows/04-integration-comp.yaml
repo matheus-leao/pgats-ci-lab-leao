@@ -32,6 +32,19 @@ jobs:
       - name: Checando padronizacao do codigo
         run: yarn test
 
+  mutatuion-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalando Yarn
+        run: npm install -g yarn
+
+      - name: Instalando Dependências
+        run: yarn
+
+      - name: Rodando testes de mutação
+        run: yarn run test:mutation
   e2e-tests:
     runs-on: ubuntu-latest
     steps:
