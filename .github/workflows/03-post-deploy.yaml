@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [ 18.x, 20.x, 22.x]
+        node-version: [22.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -27,6 +27,11 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: yarn
+
+  e2e-tests:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
     - run: yarn run test
     - run: yarn run test:mutation
     - run: yarn playwright install
