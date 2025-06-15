@@ -75,7 +75,7 @@ jobs:
         with:
           name: Test Report
           path: ./playwright-report
-          reporter: github
+          reporter: ''
 
   deploy:
     needs: [e2e-tests, mutatuion-tests]
