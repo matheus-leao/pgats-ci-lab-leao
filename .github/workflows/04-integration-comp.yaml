@@ -75,7 +75,7 @@ jobs:
         with:
           name: Test Report
           path: ./playwright-report
-          reporter: ''
+          reporter: 'jest-junit'
 
   deploy:
     needs: [e2e-tests, mutatuion-tests]
