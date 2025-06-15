@@ -71,12 +71,6 @@ jobs:
           name: relatorio
           path: ./playwright-report
 
-      - uses: dorny/test-reporter@v1.9.1
-        with:
-          name: Test Report
-          path: ./playwright-report
-          reporter: 'jest-junit'
-
   deploy:
     needs: [e2e-tests, mutatuion-tests]
     runs-on: ubuntu-latest
