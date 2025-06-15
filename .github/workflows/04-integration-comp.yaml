@@ -70,6 +70,11 @@ jobs:
         with:
           name: relatorio
           path: ./playwright-report
+      
+      - uses: dorny/test-reporter@v1.9.1
+        with:
+          path: ./playwright-report
+          reporter: all
 
   deploy:
     needs: [e2e-tests, mutatuion-tests]
